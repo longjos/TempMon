@@ -28,9 +28,11 @@ def c_to_f(celcius):
     return f
 
 # Verify there are two sensors available
-if(sensors.pcsensor.get_device_count() < 2):
+# If not, try again after 10 seconds
+# This allows for the sensors to be plugged in after removing a keyboard
+while (sensors.pcsensor.get_device_count() < 2):
     print "Two sensor devices required\n"
-    sys.exit(0)
+    sleep(10)
 print "Sensors Detected\n"
 
 print "Connecting to Metrics\n"
