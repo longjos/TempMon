@@ -48,12 +48,18 @@ print "Connected\n"
 
 # Loop, reporting the water temps every second
 while True:
-    tempA = c_to_f(sensors.pcsensor.read_temperature_c(0))
-    if(tempA > 1):
-        sensorA.add(tempA)
+    try:
+        tempA = c_to_f(sensors.pcsensor.read_temperature_c(0))
+        if(tempA > 1):
+            sensorA.add(tempA)
+    except:
+        print "Error reading from device A"
 
-    tempB = c_to_f(sensors.pcsensor.read_temperature_c(1))
-    if(tempB > 1):
-        sensorB.add(tempB)
+    try:
+        tempB = c_to_f(sensors.pcsensor.read_temperature_c(1))
+        if(tempB > 1):
+            sensorB.add(tempB)
+    except:
+        print "Error reading from device B"
         
     sleep(1)
